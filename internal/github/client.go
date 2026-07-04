@@ -15,7 +15,7 @@ import (
 const (
 	RepoOwner = "adityasunny1189"
 	RepoName  = "learning-notes"
-	Branch    = "main"
+	Branch    = "master"
 )
 
 // contentsEntry is one item from the GitHub Contents API response.
