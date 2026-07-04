@@ -17,6 +17,12 @@ func RunTask(taskDir string) project.TaskResult {
 	taskID := filepath.Base(taskDir)
 	start := time.Now()
 
+	// Download any missing dependencies silently before running tests.
+	// This is a no-op when all deps are already cached (e.g. stdlib-only tasks).
+	dl := exec.Command("go", "mod", "download")
+	dl.Dir = taskDir
+	_ = dl.Run()
+
 	cmd := exec.Command("go", "test", "-v", "./...")
 	cmd.Dir = taskDir
 
